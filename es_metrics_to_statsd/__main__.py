@@ -22,7 +22,7 @@ if CFG_ENV_VAR not in os.environ:
 
 # Config
 
-with open(os.environ['ES_METRICS_TO_STATSD_CONFIG']) as conf_file:
+with open(os.environ[CFG_ENV_VAR]) as conf_file:
     config = json.load(conf_file)
 
 conf_statsd = {
@@ -41,7 +41,7 @@ conf_es.update(config.get('es', {}))
 
 def _extract(data, path, results):
     if isinstance(data, int) and not isinstance(data, bool):
-        print(path, data)
+        # print(path, data)
         results.append((path, data))
         return
     if isinstance(data, dict):
